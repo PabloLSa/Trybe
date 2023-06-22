@@ -9,4 +9,9 @@ export default class TeamService {
     const teams = await this.teamModel.getAll();
     return { status: 'SUCCESSFUL', data: teams };
   }
+
+  async getById(id: number) {
+    const team = await this.teamModel.getById(id);
+    return { status: 'SUCCESSFUL', data: team };
+  }
 }

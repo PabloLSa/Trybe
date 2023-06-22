@@ -14,4 +14,9 @@ export default class TeamModel implements InterfaceTeamModel {
     }));
     return allTEAMS;
   }
+
+  async getById(id: number) {
+    const team = await this.model.findByPk(id);
+    return team;
+  }
 }
