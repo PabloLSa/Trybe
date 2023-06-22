@@ -1,4 +1,6 @@
 import * as express from 'express';
+import teamsRoutes from './Routes/teamsRoutes';
+// const teamsController = new TeamsController();
 
 class App {
   public app: express.Express;
@@ -9,7 +11,8 @@ class App {
     this.config();
 
     // Não remover essa rota
-    this.app.get('/', (req, res) => res.json({ ok: true }));
+    this.app.get('/', (_req, res) => res.json({ ok: true }));
+    this.app.use(teamsRoutes);
   }
 
   private config():void {

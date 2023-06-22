@@ -8,8 +8,8 @@ COPY package*.json ./
 RUN npm install
 # Copiar o restante dos arquivos da aplicação para o container
 COPY . .
-# Sinalize que aplicação expõe a porta 3001
-EXPOSE 3001
+# Sinalize que aplicação expõe a porta 3000
+EXPOSE 3000
 # Configurar os comandos para iniciar a aplicação de acordo com as boas práticas
 ENTRYPOINT ["npm", "run"]
 

@@ -17,6 +17,6 @@
       "*": ["node_modules/*"]
     }
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "service"],
   "exclude": ["src/tests"]
 }
