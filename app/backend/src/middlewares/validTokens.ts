@@ -9,13 +9,13 @@ export default class validJwt {
   ): Promise<Response | void> {
     const token = req.headers.authorization;
     if (!token) {
-      return res.status(401).json({ error: 'Token not found' });
+      return res.status(401).json({ message: 'Token not found' });
     }
     const validToken = TokenJWT.verify(token);
     res.locals.usuario = validToken;
     if (validToken === 'Token must be a valid token') {
       return res.status(401).json({ message: validToken });
-      next();
     }
+    next();
   }
 }
