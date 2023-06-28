@@ -11,7 +11,7 @@ class MatchesSequelize extends Model<InferAttributes<MatchesSequelize>,
 InferCreationAttributes<MatchesSequelize>> {
   declare id: CreationOptional<number>;
   declare homeTeamId: CreationOptional<number>;
-  declare hometeamGoals: CreationOptional<number>;
+  declare homeTeamGoals: CreationOptional<number>;
   declare awayTeamId: CreationOptional<number>;
   declare awayTeamGoals: CreationOptional<number>;
   declare inProgress: CreationOptional<boolean>;
@@ -29,7 +29,7 @@ MatchesSequelize.init({
     allowNull: false,
     field: 'home_team_id',
   },
-  hometeamGoals: {
+  homeTeamGoals: {
     type: DataTypes.INTEGER,
     allowNull: false,
     field: 'home_team_goals',

@@ -1,6 +1,7 @@
 import * as express from 'express';
 import teamsRoutes from './Routes/teamsRoutes';
 import usersRoutes from './Routes/userRoutes';
+import matchesRoutes from './Routes/matcheRoutes';
 // const teamsController = new TeamsController();
 
 class App {
@@ -15,6 +16,7 @@ class App {
     this.app.get('/', (_req, res) => res.json({ ok: true }));
     this.app.use(teamsRoutes);
     this.app.use(usersRoutes);
+    this.app.use(matchesRoutes);
   }
 
   private config():void {
