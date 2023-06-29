@@ -25,6 +25,16 @@ export default class MatchesModel implements InterfaceMatchesModel {
     return matches.map((match) => match.dataValues);
   }
 
+  async updateInProgress(matchId: number): Promise<string> {
+    const [affectedRows] = await this.model.update(
+      { inProgress: false },
+      { where: { id: matchId } },
+    );
+
+    if (affectedRows === 1) { return 'Finished'; }
+    return 'Not Finished';
+  }
+
   async getById(id: number) {
     const match = await this.model.findByPk(id);
     return match;

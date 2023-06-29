@@ -21,6 +21,11 @@ export default class MatchesService {
     return { status: 'SUCCESSFUL', data: matchesInProgress };
   }
 
+  async updateInProgress(id: number) {
+    const matches = await this.matchesModel.updateInProgress(id);
+    return { status: 'SUCCESSFUL', data: matches };
+  }
+
   async getById(id: number) {
     const matches = await this.matchesModel.getById(id);
     return { status: 'SUCCESSFUL', data: matches };

@@ -17,6 +17,12 @@ export default class MatchesController {
     return res.status(200).json(matches.data);
   }
 
+  async updateInProgress(req: Request, res: Response) {
+    const { id } = req.params;
+    const matche = await this.matchesService.updateInProgress(Number(id));
+    return res.status(200).json(matche.data);
+  }
+
   async getById(req: Request, res: Response) {
     const { id } = req.params;
     const matche = await this.matchesService.getById(Number(id));
