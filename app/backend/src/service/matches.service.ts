@@ -26,6 +26,14 @@ export default class MatchesService {
     return { status: 'SUCCESSFUL', data: matches };
   }
 
+  async updateMatchGoals(id: number, updateMatch: {
+    homeTeamGoals: number,
+    awayTeamGoals: number,
+  }) {
+    const matches = await this.matchesModel.updateMatchGoals(id, updateMatch);
+    return { status: 'SUCCESSFUL', data: matches };
+  }
+
   async getById(id: number) {
     const matches = await this.matchesModel.getById(id);
     return { status: 'SUCCESSFUL', data: matches };

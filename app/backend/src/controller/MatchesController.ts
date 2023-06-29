@@ -23,6 +23,13 @@ export default class MatchesController {
     return res.status(200).json(matche.data);
   }
 
+  async updateMatchGoals(req: Request, res: Response) {
+    const { id } = req.params;
+    const { body } = req;
+    const matche = await this.matchesService.updateMatchGoals(Number(id), body);
+    return res.status(200).json(matche.data);
+  }
+
   async getById(req: Request, res: Response) {
     const { id } = req.params;
     const matche = await this.matchesService.getById(Number(id));

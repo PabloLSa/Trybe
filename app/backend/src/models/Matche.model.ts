@@ -35,6 +35,23 @@ export default class MatchesModel implements InterfaceMatchesModel {
     return 'Not Finished';
   }
 
+  async updateMatchGoals(
+    id: number,
+    updateMatch: {
+      homeTeamGoals: number,
+      awayTeamGoals: number,
+    },
+  ): Promise<string> {
+    const { homeTeamGoals, awayTeamGoals } = updateMatch;
+    const [affectedRows] = await this.model.update(
+      { homeTeamGoals, awayTeamGoals },
+      { where: { id } },
+    );
+
+    if (affectedRows === 1) { return 'successful'; }
+    return 'Error';
+  }
+
   async getById(id: number) {
     const match = await this.model.findByPk(id);
     return match;
