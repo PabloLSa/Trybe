@@ -1,4 +1,4 @@
-// import InterfaceMatcheModel from '../Interfaces/InterfaceMatcheModel';
+// import InterfaceMatcheModel from '../Interfaces/InterfaceMatcheModel
 import MatchesModel from '../models/Matche.model';
 
 import InterfaceMatches from '../Interfaces/InterfaceMatches';
@@ -12,6 +12,13 @@ export default class MatchesService {
   public async findAll(): Promise<ServiceResponse<InterfaceMatches[]>> {
     const matches = await this.matchesModel.getAll();
     return { status: 'SUCCESSFUL', data: matches };
+  }
+
+  public async findAllInProgress(pbool: boolean): Promise<ServiceResponse<InterfaceMatches[]>> {
+    const matches = await this.matchesModel.getAll();
+
+    const matchesInProgress = matches.filter((match) => match.inProgress === pbool);
+    return { status: 'SUCCESSFUL', data: matchesInProgress };
   }
 
   async getById(id: number) {
