@@ -35,4 +35,18 @@ export default class MatchesController {
     const matche = await this.matchesService.getById(Number(id));
     return res.status(200).json(matche.data);
   }
+
+  async createNewMatch(req: Request, res: Response) {
+    const { body } = req;
+    const matche = await this.matchesService.createNewMatch(body);
+    if (matche.status === 'UNAUTHORIZED') {
+      return res.status(422).json(matche.data);
+    }
+    if (matche.status === 'NOT_FOUND') {
+      return res.status(404).json(matche.data);
+    }
+    if (matche.status === 'SUCCESSFUL') {
+      return res.status(201).json(matche.data);
+    }
+  }
 }

@@ -12,6 +12,8 @@ const matchesRoutes = Router();
 matchesRoutes.get('/matches', (req: Request, res: Response) =>
   matchesController.getAll(req, res));
 
+matchesRoutes.post('/matches', validJwt.validTokens, (req: Request, res: Response) =>
+  matchesController.createNewMatch(req, res));
 matchesRoutes.patch('/matches/:id', validJwt.validTokens, (req: Request, res: Response) =>
   matchesController.updateMatchGoals(req, res));
 

@@ -1,6 +1,7 @@
 import MatchesSequelize from '../database/models/MatchesSequelize';
 import InterfaceMatchesModel from '../Interfaces/InterfaceMatcheModel';
 import TeamSequelize from '../database/models/TeamSequelize';
+import InterfaceMatches from '../Interfaces/InterfaceMatches';
 
 export default class MatchesModel implements InterfaceMatchesModel {
   model = MatchesSequelize;
@@ -50,6 +51,23 @@ export default class MatchesModel implements InterfaceMatchesModel {
 
     if (affectedRows === 1) { return 'successful'; }
     return 'Error';
+  }
+
+  async createNewMatch(newMatch: { homeTeamId: number,
+    homeTeamGoals: number,
+    awayTeamId: number,
+    awayTeamGoals: number,
+    inProgress: boolean,
+  }): Promise<InterfaceMatches> {
+    const matchCreated = await this.model.create({
+      homeTeamId: newMatch.homeTeamId,
+      homeTeamGoals: newMatch.homeTeamGoals,
+      awayTeamId: newMatch.awayTeamId,
+      awayTeamGoals: newMatch.awayTeamGoals,
+      inProgress: true,
+    });
+
+    return matchCreated.dataValues;
   }
 
   async getById(id: number) {
