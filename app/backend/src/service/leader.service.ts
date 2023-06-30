@@ -11,4 +11,9 @@ export default class LeaderService {
     const teamsOfHouse = await this.leardBoardModel.getAll();
     return { status: 'SUCCESSFUL', data: teamsOfHouse };
   }
+
+  public async findAllAway(): Promise<ServiceResponse<unknown>> {
+    const teamsAways = await this.leardBoardModel.getAllAway();
+    return { status: 'SUCCESSFUL', data: teamsAways };
+  }
 }

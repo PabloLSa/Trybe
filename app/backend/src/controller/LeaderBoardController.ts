@@ -10,4 +10,9 @@ export default class LeaderBoardController {
     const teamsOfHouse = await this.leaderService.findAllHome();
     return res.status(200).json(teamsOfHouse.data);
   }
+
+  async getAllLeaderAway(req: Request, res: Response) {
+    const teamsOfAway = await this.leaderService.findAllAway();
+    return res.status(200).json(teamsOfAway.data);
+  }
 }

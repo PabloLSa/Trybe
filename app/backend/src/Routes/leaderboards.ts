@@ -1,7 +1,6 @@
 import { Request, Router, Response } from 'express';
 
 import LeaderBoardController from '../controller/LeaderBoardController';
-// import validJwt from '../middlewares/validTokens';
 
 const leaderboardController = new LeaderBoardController();
 
@@ -12,7 +11,7 @@ const leaderboardRouter = Router();
 leaderboardRouter.get('/leaderboard/home', (req: Request, res: Response) =>
   leaderboardController.getAllLeaderBoard(req, res));
 
-// leaderboardRouter.post('leaderboard/away', validJwt.validTokens, (req: Request, res: Response) =>
-//   leaderboardController.createNewMatch(req, res));
+leaderboardRouter.get('/leaderboard/away', (req: Request, res: Response) =>
+  leaderboardController.getAllLeaderAway(req, res));
 
 export default leaderboardRouter;
