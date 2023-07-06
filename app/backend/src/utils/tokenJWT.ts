@@ -19,11 +19,6 @@ export default class TokenJWT {
   }
 
   static verify(token: string): JwtPayload | string {
-    if (!token) return 'Token not provided';
-    try {
-      return verify(token, this.secret) as JwtPayload;
-    } catch (error) {
-      return 'Token must be a valid token';
-    }
+    return verify(token, this.secret);
   }
 }

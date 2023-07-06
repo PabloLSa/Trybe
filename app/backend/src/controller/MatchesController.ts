@@ -20,13 +20,16 @@ export default class MatchesController {
   async updateInProgress(req: Request, res: Response) {
     const { id } = req.params;
     const matche = await this.matchesService.updateInProgress(Number(id));
-    return res.status(200).json(matche.data);
+    return res.status(200).json({ message: matche.data });
   }
 
   async updateMatchGoals(req: Request, res: Response) {
     const { id } = req.params;
     const { body } = req;
     const matche = await this.matchesService.updateMatchGoals(Number(id), body);
+    if (matche.status === 'UNAUTHORIZED') {
+      return res.status(404).json(matche.data);
+    }
     return res.status(200).json(matche.data);
   }
 

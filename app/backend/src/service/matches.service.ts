@@ -32,8 +32,14 @@ export default class MatchesService {
     homeTeamGoals: number,
     awayTeamGoals: number,
   }) {
-    const matches = await this.matchesModel.updateMatchGoals(id, updateMatch);
-    return { status: 'SUCCESSFUL', data: matches };
+    const matches = await this.matchesModel.getById(id);
+
+    await this.matchesModel.updateMatchGoals(id, updateMatch);
+    const updatedMatch = await this.matchesModel.getById(id);
+    if (!matches) {
+      return { status: 'UNAUTHORIZED', data: { message: 'Match not found' } };
+    }
+    return { status: 'SUCCESSFUL', data: updatedMatch };
   }
 
   public async createNewMatch(newMatch: { homeTeamId: number,
